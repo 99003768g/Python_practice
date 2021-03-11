@@ -1,4 +1,4 @@
 a=255
 b=256
 c=a+b
-print('Addition is',c)
+print("Addition of {} and {} is {}".format(a ,b ,c))
