@@ -1,3 +1,7 @@
-a=100
-print(a,type(a))
-print("Data type of {} is ".format(a),type(a))
+a=1
+b=2.0
+c=3+4j
+d='d'
+e="eeee"
+print(type(a),type(b),type(c),type(d),type(e))
+
