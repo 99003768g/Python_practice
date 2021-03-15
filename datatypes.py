@@ -6,3 +6,5 @@ e="eeee"
 print(type(a),type(b),type(c),type(d),type(e))
 myList=[9869898989898987459,4511454641455]
 print(myList)
+myTuple=(1,2,0,3,3,3,3,64,64,654,684,68,46,46,87,687,68,768,7,6987,6)
+print(myTuple)
