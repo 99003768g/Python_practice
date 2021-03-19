@@ -1,8 +1,9 @@
 # import openpyxl
-import pandas as pd
+# import pandas as pd
+from openpyxl import load_workbook
 # To read the various excel files
 def read_excel_input():
-    excel_file = pd.ExcelFile('sample.xlsx')
+    # excel_file = pd.ExcelFile('sample.xlsx')
     pass
 
 
