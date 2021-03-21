@@ -1,0 +1,64 @@
+import pandas as pd
+from openpyxl import load_workbook
+from matplotlib import pyplot as pt
+
+excel_file = pd.ExcelFile('vook.xlsx')
+# PS = 0
+# NAME = ''
+# EMAIL = ''
+something = input("ENTER SOMETHING: ")
+
+if something == "PS":
+    PS = input("enter the PS: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+        # check for input
+        df1.set_index('Area_Name', inplace=True)
+
+        result = df1.loc[PS]
+        print(result)
+    excel_file.close()
+    path = "vook.xlsx"
+    book = load_workbook(path)
+
+    writer = pd.ExcelWriter(path, engine='openpyxl')
+    writer.book = book
+    if 'Mastersheet' in book.sheetnames:
+        ref = book['Mastersheet']
+        book.remove(ref)
+
+    result.to_excel(writer, sheet_name='Mastersheet')
+    pivot = df1.groupby(['Area_Name']).mean()
+    variable = pivot.loc[:,"Year(2005)":"Cases_Property_Recovered(2005)"]
+    variable.plot(kind ='bar')
+    pt.show()
+    writer.save()
+    writer.close()
+
+elif something == "NAME":
+    NAME = input("enter NAME: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+
+        # check for input
+        df1.set_index('Name', inplace=True)
+
+        result = df1.loc[input]
+        print(result)
+
+
+elif something == "EMAIL":
+    EMAIL = input("enter Email: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+
+else:
+    print("Not found re babaa")
+
+excel_file.close()
