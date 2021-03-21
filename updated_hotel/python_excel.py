@@ -1,0 +1,100 @@
+import pandas as pd
+from openpyxl import load_workbook
+from matplotlib import pyplot as pt
+
+excel_file = pd.ExcelFile('vook.xlsx')
+
+something = input("ENTER PS or NAME or EMAIL as key: ")
+
+if something == "PS":
+    PS = input("enter PS: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+        # check for input
+        df1.set_index('Area_Name', inplace=True)
+
+        result = df1.loc[PS]
+        print(result)
+    excel_file.close()
+    path = "vook.xlsx"
+    book = load_workbook(path)
+
+    writer = pd.ExcelWriter(path, engine='openpyxl')
+    writer.book = book
+    if 'Mastersheet' in book.sheetnames:
+        ref = book['Mastersheet']
+        book.remove(ref)
+
+    result.to_excel(writer, sheet_name='Mastersheet')
+    pivot = df1.groupby(['Area_Name']).mean()
+    variable = pivot.loc[:,"Year(2005)":"Cases_Property_Recovered(2005)"]
+    variable.plot(kind ='bar')
+    pt.show()
+    writer.save()
+    writer.close()
+
+elif something == "NAME":
+    NAME = input("Enter NAME: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+        # check for input
+        df1.set_index('Area_Name', inplace=True)
+
+        result = df1.loc[NAME]
+        print(result)
+    excel_file.close()
+    path = "vook.xlsx"
+    book = load_workbook(path)
+
+    writer = pd.ExcelWriter(path, engine='openpyxl')
+    writer.book = book
+    if 'Mastersheet' in book.sheetnames:
+        ref = book['Mastersheet']
+        book.remove(ref)
+
+    result.to_excel(writer, sheet_name='Mastersheet')
+    pivot = df1.groupby(['Area_Name']).mean()
+    variable = pivot.loc[:,"Year(2005)":"Cases_Property_Recovered(2005)"]
+    variable.plot(kind ='bar')
+    pt.show()
+    writer.save()
+    writer.close()
+
+
+elif something == "EMAIL":
+    EMAIL = input("Enter Email: ")
+    df = pd.DataFrame()
+
+    for i in excel_file.sheet_names:
+        df1 = pd.read_excel(excel_file, i)
+        # check for input
+        df1.set_index('Area_Name', inplace=True)
+
+        result = df1.loc[EMAIL]
+        print(result)
+    excel_file.close()
+    path = "vook.xlsx"
+    book = load_workbook(path)
+
+    writer = pd.ExcelWriter(path, engine='openpyxl')
+    writer.book = book
+    if 'Mastersheet' in book.sheetnames:
+        ref = book['Mastersheet']
+        book.remove(ref)
+
+    result.to_excel(writer, sheet_name='Mastersheet')
+    pivot = df1.groupby(['Area_Name']).mean()
+    variable = pivot.loc[:,"Year(2005)":"Cases_Property_Recovered(2005)"]
+    variable.plot(kind ='bar')
+    pt.show()
+    writer.save()
+    writer.close()
+
+else:
+    print("Valid keyword not entered Dude!")
+
+excel_file.close()

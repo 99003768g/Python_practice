@@ -1,0 +1,2 @@
+
+        book.remove(ref)
